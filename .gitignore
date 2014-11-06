@@ -4,8 +4,8 @@
 *.war
 *.ear
 
-/.metadata
+#/.metadata
 /*/bin
-.classpath
-.project
-/*/.settings
+#.classpath
+#.project
+#/*/.settings

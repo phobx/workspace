@@ -1,0 +1,72 @@
+package com.webcamp.dto;
+
+import java.util.Random;
+import java.util.Scanner;
+
+import com.webcamp.views.InputHelper;
+
+public class GuessNumberGame extends AbstractGame {
+
+	private int number;
+	private int difficulty = 8;
+
+	public GuessNumberGame() {
+		super("Guess Number 1.0");
+
+	}
+
+	@Override
+	public void start() {
+
+		super.start();
+
+		int rand = 0;
+		number = new Random().nextInt(100) + 1;
+
+/*		InputHelper selectDifficulty = new InputHelper("Select difficulty : ");
+		for (Difficulty d : Difficulty.values()) {
+			System.out.println("You have " + d.getSteps() + "tries."
+					+ d.getMessage());
+		}
+		selectDifficulty.show(new Scanner(System.in));
+
+		for (Difficulty d : Difficulty.values()) {
+			System.out.println("You have " + d.getSteps() + " tries. "
+					+ d.getMessage());
+		}*/
+
+		for (int i = 0; i < difficulty; i++) {
+
+			InputHelper ih = new InputHelper("Try #" + (i + 1)
+					+ ". Enter number from 1 to 100 : ");
+			ih.show(new Scanner(System.in));
+
+			try {
+				rand = Integer.parseInt(ih.getInput());
+
+				if (rand == number) {
+
+					break;
+				} else if (rand <= number) {
+					System.out.println("Too small.");
+				} else {
+					System.out.println("Too big.");
+				}
+			} catch (Exception e) {
+				System.out.println("You must enter a number! Try again.");
+				i--;
+				// e.printStackTrace();
+			}
+
+		}
+
+		if (rand == number) {
+			System.out.println("You are lucky today! Number is " + number);
+		} else {
+			System.out.println("Loser! Try another time. Number is " + number);
+		}
+
+	}
+
+	public static void main(String[] args) { new GuessNumberGame().start(); }
+}
