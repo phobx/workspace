@@ -13,9 +13,9 @@ public class WelcomeView implements View {
 	@Override
 	public void show(Scanner scanner) {
 		System.out.println("Welcome to the Game Machine, Looser!");
-		InputHelper ih = new InputHelper("Input your name: ");
+		StringInput ih = new StringInput("Input your name: ", 3);
 		ih.show(scanner);
 		userName = ih.getInput();
-		System.out.println("Ok, " + userName + ", go on...");
+		// System.out.println("Ok, " + userName + ", go on...");
 	}
 }

@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String[] words = { };
+		Map<String, Integer> m = new HashMap<>();
+
+		for (String s : words) {
+			if (!m.containsKey(s)) {
+				m.put(s, 1);
+			} else {
+				int q;
+				q = m.get(s);
+				q++;
+				m.put(s, q);
+			}
+		}
+
+		for (String w : m.keySet()) {
+			System.out.println(w + "\t : " + m.get(w));
+		}
+
+		System.out.println("Total number of words : " + words.length);
+		System.out.println("Number of unique words : " + m.size());
+
+	}
+
+}

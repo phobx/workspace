@@ -1,9 +1,11 @@
 package com.webcamp.dto;
 
+import java.util.Scanner;
+
 public interface Game {
 
-	String getName();
+	public String getName();
 
-	void start();
+	void run(Player player, Scanner scanner);
 
 }
