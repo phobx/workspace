@@ -29,9 +29,6 @@ public class FilesMain {
 		// System.out.println("can write: " + file.canWrite());
 		// System.out.println("free space: " + file.getFreeSpace());
 
-		String str = "\tHello, file world!\n";
-		byte[] buffer = str.getBytes("UTF-8");
-
 		FileOutputStream fos;
 		try {
 			fos = new FileOutputStream(file);
@@ -57,7 +54,7 @@ public class FilesMain {
 					// System.out.println(b);
 				}
 
-				// fis.close();
+				fis.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,8 +72,7 @@ public class FilesMain {
 		}
 
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					new FileInputStream(new File("pw.txt"))));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("pw.txt"))));
 			while (true) {
 				String s = br.readLine();
 				if (s == null) {

@@ -3,8 +3,9 @@
 *.jar
 *.war
 *.ear
+*.rar
 
-#/.metadata
+/.metadata
 /*/bin
 #.classpath
 #.project
