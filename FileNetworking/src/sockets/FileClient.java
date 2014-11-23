@@ -1,27 +1,32 @@
 package sockets;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class FileClient {
-	public static void main(String[] args) throws Exception {
-		Socket s = new Socket("127.0.0.1", Connections.SERVER_PORT);
-		boolean answer = true;
+	public static void main(String[] args) {
 
-		do {
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("Enter command :");
-			String command = scanner.nextLine();
-			new Connections().writeToSocket(s, command);
+		try {
+			Socket s = new Socket("127.0.0.1", Connections.SERVER_PORT);
 
-			System.out.println(new Connections().readFromSocket(s));
+			ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+			ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+			System.out.println("Client is on.");
 
-			System.out.println("Repeat? y/n");
-			answer = scanner.nextLine().trim().toLowerCase().equals("y");
-
-			if (!answer) {
-				new Connections().writeToSocket(s, "exit");
+			while (true) {
+				Scanner sc = new Scanner(System.in);
+				System.out.println("Enter command :");
+				String command = sc.nextLine().trim();
+				oos.writeObject(command);
+				String response = (String) ois.readObject();
+				System.out.println(response);
 			}
-		} while (answer);
+
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+		}
+
 	}
 }

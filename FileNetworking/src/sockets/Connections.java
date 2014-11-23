@@ -1,12 +1,7 @@
 package sockets;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-
 public class Connections {
-	public static final int SERVER_PORT = 1729;
+	public static final int SERVER_PORT = 7777;
 
 	public static final String EXIT_COMMAND = "exit";
 	public static final String LIST_COMMAND = "ls";
@@ -14,15 +9,11 @@ public class Connections {
 	public static final String DOWNLOAD_COMMAND = "get";
 	public static final String HELP_COMMAND = "help";
 
-	public void writeToSocket(Socket s, String c) throws IOException {
-		ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-		oos.writeObject(c);
-		oos.flush();
-	}
+	public static final String FILE_DIR = "server";
+	public static final String DOWNLOAD_DIR = "downloads";
 
-	public String readFromSocket(Socket s) throws IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
-		String c = (String) ois.readObject();
-		return c.trim();
-	}
+	public static final String HELP_NOTES = "List of commands:" + "\n exit \t\t shut down server;"
+			+ "\n help \t\t show all commands;" + "\n ls \t\t list all files;" + "\n get <filename>  download chosen file;"
+			+ "\n rm <filename> \t remove chosen file from list.";
+
 }
