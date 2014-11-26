@@ -21,7 +21,11 @@ public class FileClient {
 				String command = sc.nextLine().trim();
 				oos.writeObject(command);
 				String response = (String) ois.readObject();
-				System.out.println(response);
+				if (response.equals("+")) {
+
+				} else {
+					System.out.println(response);
+				}
 			}
 
 		} catch (Exception e) {
