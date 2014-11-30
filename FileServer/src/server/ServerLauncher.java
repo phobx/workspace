@@ -7,6 +7,7 @@ import java.net.Socket;
 import shared.Constants;
 
 public class ServerLauncher {
+
 	public static void main(String[] args) throws Exception {
 		ServerSocket serverSocket = new ServerSocket();
 		serverSocket.bind(new InetSocketAddress("localhost", Constants.SERVER_PORT), Constants.BACKLOG);

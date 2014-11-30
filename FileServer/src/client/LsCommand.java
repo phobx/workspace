@@ -16,10 +16,13 @@ public class LsCommand extends AbstractCommand {
 		oos.writeObject(new LsRequest());
 		ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 		LsResponse response = (LsResponse) ois.readObject();
-		System.out.println("File list on remote system: ");
-		for (String fileName : response.getFiles()) {
-			System.out.println("   " + fileName);
+		if (response.getFiles().size() > 0) {
+			System.out.println("File list on remote system: ");
+			for (String fileName : response.getFiles()) {
+				System.out.println("	" + fileName);
+			}
 		}
+		System.out.println(response.getFinalMessage());
 	}
 
 	@Override
