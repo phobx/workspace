@@ -16,7 +16,8 @@ public class Main {
 		System.out.println("Data created");
 		long start = System.currentTimeMillis();
 		List<WorkerThread> threads = new ArrayList<>();
-		int M = 8;
+
+		int M = 4;
 		for (int i = 0; i < M; i++) {
 			WorkerThread wth = new WorkerThread(data, data.length / M * i, data.length / M * (i + 1));
 			threads.add(wth);
