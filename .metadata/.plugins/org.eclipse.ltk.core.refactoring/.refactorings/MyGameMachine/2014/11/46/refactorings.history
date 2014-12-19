@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;View.java&apos; to &apos;Vikings/src/views&apos;&#x0D;&#x0A;- Original project: &apos;GameMachine&apos;&#x0D;&#x0A;- Destination element: &apos;Vikings/src/views&apos;&#x0D;&#x0A;- Original element: &apos;com.webcamp.views.View.java&apos;" description="Copy compilation unit" destination="=Vikings/src&lt;views" element1="/src&lt;com.webcamp.views{View.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1415830456631" units="1" version="1.0"/>
-</session>

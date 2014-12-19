@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename local variable &apos;list&apos; in &apos;Main.main(...)&apos; to &apos;randomIntegers&apos;&#x0D;&#x0A;- Original project: &apos;Sorter&apos;&#x0D;&#x0A;- Original element: &apos;Main.main(String[]).list&apos;&#x0D;&#x0A;- Renamed element: &apos;list&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;list&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Main.java[Main~main~\[QString;@list!149!187!163!166!QList\&lt;QInteger;&gt;;!0!false" name="randomIntegers" references="true" stamp="1416003082552" version="1.0"/>
-</session>
