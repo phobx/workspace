@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MyCoolPerson last-name="Smith" birth-date="2014-12-12T11:14:21.632+02:00">
+    <first-name>John</first-name>
+</MyCoolPerson>

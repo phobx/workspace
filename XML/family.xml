@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<family>
+    <clanName>MyClan</clanName>
+    <familyMembers last-name="Smith" birth-date="2014-12-12T11:14:21.632+02:00">
+        <first-name>John</first-name>
+    </familyMembers>
+    <familyMembers last-name="Micheal" birth-date="2014-12-12T11:14:21.632+02:00">
+        <first-name>Mike</first-name>
+    </familyMembers>
+</family>
