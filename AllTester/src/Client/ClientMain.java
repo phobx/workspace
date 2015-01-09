@@ -6,19 +6,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 
+import Common.CommonMain;
+
 public class ClientMain {
 	public static void main(String[] args) throws IOException {
+
 		int bytesRead;
 		int current = 0;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		Socket sock = null;
 		try {
-			sock = new Socket("127.0.0.1", 12345);
+			sock = new Socket("127.0.0.1", CommonMain.PORT);
 			System.out.println("Connecting...");
 
 			// receive file
-			byte[] mybytearray = new byte[16777216];
+			byte[] mybytearray = new byte[20000000];
 			InputStream is = sock.getInputStream();
 			fos = new FileOutputStream("s.pdf");
 			bos = new BufferedOutputStream(fos);

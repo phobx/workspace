@@ -8,30 +8,35 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Common.CommonMain;
+
 public class ServerMain {
 	public static void main(String[] args) throws IOException {
 
-		File myFile = new File("s1.pdf");
-		byte[] mybytearray = new byte[(int) myFile.length()];
-		FileInputStream fis = new FileInputStream(myFile);
-
-		try (ServerSocket servsock = new ServerSocket(12345);
-				Socket sock = servsock.accept();
-				BufferedInputStream bis = new BufferedInputStream(fis);
-				OutputStream os = sock.getOutputStream();) {
+		OutputStream os = null;
+		try (ServerSocket servsock = new ServerSocket(CommonMain.PORT);) {
 
 			while (true) {
 				System.out.println("Waiting...");
+				try (Socket sock = servsock.accept();) {
+					System.out.println("Accepted connection : " + sock);
+					// send file
+					File myFile = new File("s1.pdf");
+					byte[] mybytearray = new byte[(int) myFile.length()];
+					FileInputStream fis = new FileInputStream(myFile);
+					BufferedInputStream bis = new BufferedInputStream(fis);
+					bis.read(mybytearray, 0, mybytearray.length);
+					os = sock.getOutputStream();
+					System.out.println("Sending file (" + mybytearray.length
+							+ " bytes)");
+					os.write(mybytearray, 0, mybytearray.length);
+					os.flush();
+					System.out.println("Done.");
+				} finally {
 
-				System.out.println("Accepted connection : " + sock);
-
-				bis.read(mybytearray, 0, mybytearray.length);
-				System.out.println("Sending file (" + mybytearray.length
-						+ " bytes)");
-				os.write(mybytearray, 0, mybytearray.length);
-				os.flush();
-				System.out.println("Done.");
-
+					if (os != null)
+						os.close();
+				}
 			}
 		}
 	}
