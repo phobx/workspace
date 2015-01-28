@@ -3,7 +3,12 @@ import java.util.logging.*;
 
 public class LogTester {
 	public static void main(String[] args) {
-		//LogManager lm = LogManager.getLogManager();
+		
+		new LogTester().logTesting();
+		
+	}
+	
+	public void logTesting() {//LogManager lm = LogManager.getLogManager();
 		Logger logger = Logger.getLogger("LogTester");
 		
 		logger.setLevel(Level.FINE);
@@ -27,7 +32,6 @@ public class LogTester {
 		logger.log(Level.FINE,"==marker==");
 		
 		System.out.println(logger.getLevel().toString());
-		
 		
 		
 	}

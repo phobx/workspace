@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="players.dto.Team" table="tnt_teams" entity-name="Team">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string" column="name" />
+		<property name="leagueId" type="int" column="league_id" />
+
+		<set name="players" table="tnt_players" lazy="false" cascade="all">
+			<key>
+				<column name="team_id" not-null="false" />
+			</key>
+			<one-to-many entity-name="Player" />
+		</set>
+	</class>
+</hibernate-mapping>

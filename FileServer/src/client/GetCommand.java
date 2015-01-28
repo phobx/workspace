@@ -1,6 +1,7 @@
 package client;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -19,17 +20,21 @@ public class GetCommand extends AbstractFileCommand {
 		}
 		Socket socket = createSocket();
 		String filename = cmd[1];
-		ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+		ObjectOutputStream oos = new ObjectOutputStream(
+				socket.getOutputStream());
 
 		GetRequest request = new GetRequest(filename);
 		oos.writeObject(request);
 
 		ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 		GetResponse response = (GetResponse) ois.readObject();
-		if (response.getFileFound()) {
-			System.out.println("Downloading...");
+		if (response.getFileSize() > -1) {
 			File file = new File(ClientData.dir, filename);
-			// receive file
+			System.out.println("Downloading file «" + filename + "» ("
+					+ response.getBytearray().length + " bytes)...");
+			FileOutputStream fos = new FileOutputStream(file);
+			fos.write(response.getBytearray());
+			fos.close();
 		} else {
 			System.out.println("File missing on server");
 		}

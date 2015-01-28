@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="players.dto.Player" table="tnt_players" entity-name="Player">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="firstName" type="string" column="first_name" />
+		<property name="lastName" type="string" column="last_name" />
+		<property name="height" type="int" column="height" />
+		<property name="weight" type="int" column="weight" />
+		<property name="birthDate" type="calendar" column="birth_date" />
+		
+	</class>
+</hibernate-mapping>

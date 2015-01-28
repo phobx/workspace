@@ -21,9 +21,9 @@ public class ClientMain {
 			System.out.println("Connecting...");
 
 			// receive file
-			byte[] mybytearray = new byte[20000000];
+			byte[] mybytearray = new byte[200000000];
 			InputStream is = sock.getInputStream();
-			fos = new FileOutputStream("s.pdf");
+			fos = new FileOutputStream("2.rar");
 			bos = new BufferedOutputStream(fos);
 			bytesRead = is.read(mybytearray, 0, mybytearray.length);
 			current = bytesRead;

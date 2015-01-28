@@ -1,6 +1,9 @@
 package server;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -24,7 +27,8 @@ public class WorkerThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			ObjectInputStream ois = new ObjectInputStream(
+					socket.getInputStream());
 			Request request = (Request) ois.readObject();
 			Response response = null;
 			if (request instanceof LsRequest) {
@@ -40,14 +44,22 @@ public class WorkerThread extends Thread {
 				GetResponse r = new GetResponse();
 				String filename = ((GetRequest) request).getFilename();
 				File file = new File(ServerData.dir, filename);
-				r.setFileFound(file.exists());
+				if (file.exists()) {
+					FileInputStream fis = new FileInputStream(file);
+					BufferedInputStream bis = new BufferedInputStream(fis);
+					byte[] bytearray = new byte[(int) file.length()];
+					bis.read(bytearray, 0, (int) file.length());
+					r.setBytearray(bytearray);
+					r.setFileSize((int) file.length());
+				} else {
+					r.setFileSize(-1);
+				}
+				
 				response = r;
 
-				if (file.exists()) {
-					// file to client
-				}
 			}
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			ObjectOutputStream oos = new ObjectOutputStream(
+					socket.getOutputStream());
 			oos.writeObject(response);
 			oos.flush();
 		} catch (Exception ex) {

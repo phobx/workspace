@@ -2,13 +2,20 @@ package shared;
 
 public class GetResponse extends Response {
 
-	private boolean fileFound;
-
-	public void setFileFound(boolean fileFound) {
-		this.fileFound = fileFound;
+	private int fileSize;
+	private byte[] bytearray;
+	
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
+	}
+	public void setBytearray(byte[] bytearray) {
+		this.bytearray = bytearray;
+	}
+	public int getFileSize() {
+		return fileSize;
+	}
+	public byte[] getBytearray() {
+		return bytearray;
 	}
 
-	public boolean getFileFound() {
-		return fileFound;
-	}
 }
